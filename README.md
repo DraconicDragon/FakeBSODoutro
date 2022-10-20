@@ -16,7 +16,7 @@ Either get the [.NET 6 *Desktop* runtime](https://dotnet.microsoft.com/en-us/dow
 
 #### OR
 
-Download the FakeBSODoutro-SelfContained.exe
+Download the FakeBSODoutro-SelfContained.zip file.
 
 \
 \
