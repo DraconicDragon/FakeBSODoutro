@@ -1,4 +1,4 @@
-# FakeBSODoutrohttps://dotnet.microsoft.com/en-us/download/dotnet/6.0
+# FakeBSODoutro
 
 Created this because I was bored and that one time I used TikTok for more than 5 minutes I saw this and the rest is in the description.
 
