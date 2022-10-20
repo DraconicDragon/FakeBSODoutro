@@ -8,6 +8,7 @@
 	  <PublishReadyToRun>true</PublishReadyToRun>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
