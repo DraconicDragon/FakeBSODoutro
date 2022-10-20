@@ -12,8 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\outro.mp3" />
-    <Resource Include="Assets\Image1.png" />
+    <Compile Remove="Assets\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <None Remove="Assets\**" />
   </ItemGroup>
 
 	<ItemGroup>
