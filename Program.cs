@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Media;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace FakeBSODoutro;
@@ -16,26 +18,42 @@ static class Program
         new Thread(() =>
         {
             Thread.CurrentThread.IsBackground = true;
+
+            var temporaryFilePath = String.Format("{0}{1}{2}", Path.GetTempPath(), Guid.NewGuid().ToString("N"), ".mp3");
+            
+            using (var memoryStream = new MemoryStream(Properties.Resources.outro))
+            using (var tempFileStream = new FileStream(temporaryFilePath, FileMode.Create, FileAccess.Write))
+            {
+                memoryStream.Position = 0;
+                
+                memoryStream.WriteTo(tempFileStream);
+            }
             
             WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
-            wplayer.URL = @"Assets/outro.mp3";
+            wplayer.URL = temporaryFilePath;
+            wplayer.settings.setMode("loop", false);
             wplayer.controls.currentPosition = 4.5;
             wplayer.controls.play();
-            
+
             while (true)
             {
-                Thread.Sleep(40);
+                Thread.Sleep(20);
                 if (Convert.ToInt32(wplayer.controls.currentPosition) == 16)
                 {
-                    wplayer.controls.currentPosition = 16.45;
+                    if (File.Exists(temporaryFilePath))
+                        File.Delete(temporaryFilePath);
+                    while (true)
+                    {
+                        Thread.Sleep(50);
+                        wplayer.controls.currentPosition = 16.6;
+                    }
                 }
             }
         }).Start();
 
-        Thread.Sleep(150);
+        Thread.Sleep(160);
 
-        Process[] processes = Process.GetProcessesByName("FakeBSODoutro");
+        Process[] processes = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
         foreach (Process proc in processes)
             PostMessage(proc.MainWindowHandle, WM_KEYDOWN, VK_F11, 0);
 
