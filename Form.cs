@@ -14,7 +14,7 @@ class BsodForm
         };
         PictureBox BSODpicture = new()
         {
-            Image = FakeBSODoutro.Properties.Resources.Image1,
+            Image = FakeBSODoutro.Properties.Resources.FakeBSODimg,
             AutoSize = true
         };
         
